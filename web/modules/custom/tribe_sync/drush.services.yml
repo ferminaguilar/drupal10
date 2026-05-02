@@ -1,0 +1,5 @@
+services:
+  tribe_sync.commands:
+    class: \Drupal\tribe_sync\Commands\TribeSyncCommands
+    tags:
+      - { name: drush.command }

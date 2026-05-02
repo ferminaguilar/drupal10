@@ -1,0 +1,70 @@
+<?php
+
+use Drupal\field\Entity\FieldConfig;
+use Drupal\paragraphs\Entity\ParagraphsType;
+
+/**
+ * Aligns the Agency content type with section and map requirements.
+ */
+function tribe_sync_update_10001() {
+  $updated = [];
+
+  if ($paragraph_type = ParagraphsType::load('agency_sections')) {
+    if ($paragraph_type->label() !== 'Agency Section') {
+      $paragraph_type->set('label', 'Agency Section');
+      $paragraph_type->save();
+      $updated[] = 'Renamed the agency_sections paragraph bundle to Agency Section.';
+    }
+  }
+
+  $field_updates = [
+    'node.agency.field_section' => [
+      'label' => 'Agency Sections',
+      'description' => 'Add one section per item using a section title and section body. Suggested sections: Agency Overview and Mission, Contact Information, Location, History, and Operations, Agency Profile & Quick Facts, Indian Services, and Trust Services.',
+    ],
+    'node.agency.field_location' => [
+      'label' => 'Agency Map',
+      'description' => 'Enter the agency location for the Leaflet map display.',
+    ],
+    'paragraph.agency_sections.field_title' => [
+      'label' => 'Section Title',
+      'description' => 'Examples: Agency Overview and Mission, Contact Information, or Trust Services.',
+    ],
+    'paragraph.agency_sections.field_information' => [
+      'label' => 'Section Body',
+      'description' => 'Add the body content for this agency section.',
+    ],
+  ];
+
+  foreach ($field_updates as $field_name => $values) {
+    if ($field = FieldConfig::loadByName(...explode('.', $field_name, 3))) {
+      $needs_save = FALSE;
+      if ($field->label() !== $values['label']) {
+        $field->setLabel($values['label']);
+        $needs_save = TRUE;
+      }
+      if ($field->getDescription() !== $values['description']) {
+        $field->setDescription($values['description']);
+        $needs_save = TRUE;
+      }
+      if ($needs_save) {
+        $field->save();
+        $updated[] = "Updated {$field_name}.";
+      }
+    }
+  }
+
+  if ($form_display = \Drupal::entityTypeManager()->getStorage('entity_form_display')->load('node.agency.default')) {
+    $component = $form_display->getComponent('field_section');
+    if ($component) {
+      $component['settings']['title'] = 'Section';
+      $component['settings']['title_plural'] = 'Sections';
+      $component['settings']['default_paragraph_type'] = 'agency_sections';
+      $form_display->setComponent('field_section', $component);
+      $form_display->save();
+      $updated[] = 'Updated the Agency Sections editor widget.';
+    }
+  }
+
+  return $updated ? implode(' ', $updated) : 'No Agency content type changes were required.';
+}

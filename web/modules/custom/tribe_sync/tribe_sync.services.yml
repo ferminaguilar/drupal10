@@ -1,0 +1,4 @@
+services:
+  tribe_sync.manager:
+    class: Drupal\tribe_sync\TribeSyncManager
+

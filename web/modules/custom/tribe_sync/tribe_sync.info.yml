@@ -1,0 +1,10 @@
+name: Tribe Sync
+type: module
+description: 'Syncs Tribal data from ArcGIS and EPA endpoints.'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:node
+  - drupal:taxonomy
+  - address:address
+  - geofield:geofield

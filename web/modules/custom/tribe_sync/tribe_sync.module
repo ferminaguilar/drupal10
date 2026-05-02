@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Implements hook_cron().
+ */
+function tribe_sync_cron() {
+  // We check a state variable to ensure it only runs once every 24 hours
+  $last_run = \Drupal::state()->get('tribe_sync.last_run', 0);
+  $request_time = \Drupal::time()->getRequestTime();
+
+  // 86400 seconds = 24 hours
+  if (($request_time - $last_run) > 86400) {
+    try {
+      $result = \Drupal::service('tribe_sync.manager')->sync(FALSE);
+      \Drupal::logger('tribe_sync')->info('ArcGIS Tribe Sync completed successfully via Cron.');
+      \Drupal::logger('tribe_sync')->info('Processed @processed of @total records.', [
+        '@processed' => $result['processed'] ?? 0,
+        '@total' => $result['total'] ?? 0,
+      ]);
+      \Drupal::state()->set('tribe_sync.last_run', $request_time);
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('tribe_sync')->error('ArcGIS Sync failed: @message', ['@message' => $e->getMessage()]);
+    }
+  }
+}

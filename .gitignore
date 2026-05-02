@@ -1,0 +1,15 @@
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/profiles/contrib/
+/web/themes/contrib/
+/web/libraries/
+/web/sites/*/files/
+/web/sites/*/settings*.php
+!/web/sites/default/default.settings.php
+!/web/sites/default/default.services.yml
+/web/sites/*/services*.yml
+/.idea/
+/.vscode/
+/*.code-workspace
+/.DS_Store

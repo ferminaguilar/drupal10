@@ -1,0 +1,88 @@
+<?php
+
+use Drupal\media\Entity\Media;
+use Drupal\node\Entity\Node;
+use Drupal\file\Entity\File;
+use Drupal\Core\Url;
+
+/**
+ * @file
+ * USWDS Base sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+/**
+ * Implements hook_preprocess().
+ */
+function fedgov_preprocess(&$variables) {
+  // This gets the subdirectory path (e.g., /drupal10/web)
+  $base_path = \Drupal::request()->getBasePath();
+  
+  // This gets the theme path (e.g., themes/custom/fedgov)
+  $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
+
+  // Combine them: /drupal10/web/themes/custom/fedgov/assets/uswds/img/
+  $variables['uswds_images'] = $base_path . '/' . $theme_path . '/assets/uswds/img/';
+}
+
+
+
+
+/**
+ * Implements hook_preprocess_field().
+ */
+// function fedgov_preprocess_field(&$variables) {
+//   if ($variables['element']['#field_name'] === 'field_content_and_media_links') {
+//     foreach ($variables['items'] as $delta => &$item) {
+      
+//       $url_obj = $item['content']['#url'] ?? NULL;
+//       if (!$url_obj instanceof Url) continue;
+
+//       $existing_title = (string) ($item['content']['#title'] ?? '');
+      
+//       // Nuke system paths that Linkit sometimes auto-fills
+//       if (str_starts_with($existing_title, '/') || str_contains($existing_title, 'media/')) {
+//         $existing_title = '';
+//       }
+
+//       // 1. Check if the link is a Media or a Node
+//       if ($url_obj->isRouted()) {
+//         $route_name = $url_obj->getRouteName();
+//         $params = $url_obj->getRouteParameters();
+
+//         // --- CASE A: MEDIA (Documents) ---
+//         if ($route_name === 'entity.media.canonical' && isset($params['media'])) {
+//           $media = Media::load($params['media']);
+//           if ($media && $media->bundle() === 'document') {
+//             $file_field = $media->get('field_media_document');
+//             if (!$file_field->isEmpty()) {
+//               $file_data = $file_field->first()->getValue();
+              
+//               // Set Title from Description if empty
+//               if (empty($existing_title)) {
+//                 $item['content']['#title'] = !empty($file_data['description']) ? $file_data['description'] : $media->label();
+//               }
+
+//               // Set URL to direct file path
+//               $file_entity = File::load($file_data['target_id']);
+//               if ($file_entity) {
+//                 $item['content']['#url'] = \Drupal::service('file_url_generator')->generate($file_entity->getFileUri());
+//               }
+//             }
+//           }
+//         }
+
+//         // --- CASE B: NODE (Content/Pages) ---
+//         elseif ($route_name === 'entity.node.canonical' && isset($params['node'])) {
+//           if (empty($existing_title)) {
+//             $node = Node::load($params['node']);
+//             if ($node) {
+//               $item['content']['#title'] = $node->getTitle();
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
