@@ -114,19 +114,41 @@ class TribeSyncManager {
         continue;
       }
 
+      // 1. First, try matching the incoming ArcGIS Global ID
       $existing = $storage->getQuery()
         ->condition('type', 'tribe')
         ->condition('field_global_id', $global_id)
         ->accessCheck(FALSE)
         ->execute();
 
+      // 2. TRIPLE FAIL-SAFE: If ArcGIS changed the Global ID, check stable identifiers
+      if (empty($existing)) {
+        $norm_bia = $this->normalizeBiaCode($p['currentbiatribalcode'] ?? $p['biacode'] ?? '');
+        
+        if (!empty($norm_bia)) {
+          // Look up by the immutable BIA Integer Code
+          $existing = $storage->getQuery()
+            ->condition('type', 'tribe')
+            ->condition('field_bia_tribal_code', $norm_bia)
+            ->accessCheck(FALSE)
+            ->execute();
+        }
+        
+        // 3. Last resort fallback: Check by the fuzzy-simplified name string
+        if (empty($existing)) {
+          $simple_arc = $simplify($p['tribefullname'] ?? '');
+          $existing = $storage->getQuery()
+            ->condition('type', 'tribe')
+            ->condition('field_aka', $simple_arc) // Or title
+            ->accessCheck(FALSE)
+            ->execute();
+        }
+      }
+
+      // Now this block is truly bulletproof
       if (!empty($existing)) {
         $node = $storage->load(reset($existing));
-        $node->set('field_physical_address', NULL);
-        $node->set('field_mailing_address', NULL);
-        $node->set('field_job_title', NULL);
-      }
-      else {
+      } else {
         $node = Node::create(['type' => 'tribe']);
         $node->set('field_global_id', $global_id);
       }
