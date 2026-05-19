@@ -6,7 +6,7 @@ use Drupal\node\Entity\Node;
 use Drupal\taxonomy\Entity\Term;
 
 /**
- * Runs the ArcGIS and EPA tribe synchronization.
+ * Runs the ArcGIS and EPA tribe synchronization with change tracking.
  */
 class TribeSyncManager {
 
@@ -16,6 +16,12 @@ class TribeSyncManager {
   public function sync(bool $dry_run = FALSE): array {
     $arcgis_url = 'https://services1.arcgis.com/UxqqIfhng71wUT9x/arcgis/rest/services/TribalLeadership_Directory/FeatureServer/0/query?where=1%3D1&outFields=*&f=geojson';
     $epa_url = 'https://cdxapi.epa.gov/oms-tribes-rest-services/api/v1/tribeDetails';
+
+    // Initialize Counters for Tracking Reports
+    $created_count = 0;
+    $updated_count = 0;
+    $id_shift_count = 0;
+    $shifted_tribes = [];
 
     $simplify = function ($name) {
       if (empty($name)) {
@@ -121,6 +127,8 @@ class TribeSyncManager {
         ->accessCheck(FALSE)
         ->execute();
 
+      $id_shifted = FALSE;
+
       // 2. TRIPLE FAIL-SAFE: If ArcGIS changed the Global ID, check stable identifiers
       if (empty($existing)) {
         $norm_bia = $this->normalizeBiaCode($p['currentbiatribalcode'] ?? $p['biacode'] ?? '');
@@ -132,6 +140,10 @@ class TribeSyncManager {
             ->condition('field_bia_tribal_code', $norm_bia)
             ->accessCheck(FALSE)
             ->execute();
+          
+          if (!empty($existing)) {
+            $id_shifted = TRUE;
+          }
         }
         
         // 3. Last resort fallback: Check by the fuzzy-simplified name string
@@ -139,19 +151,43 @@ class TribeSyncManager {
           $simple_arc = $simplify($p['tribefullname'] ?? '');
           $existing = $storage->getQuery()
             ->condition('type', 'tribe')
-            ->condition('field_aka', $simple_arc) // Or title
+            ->condition('field_aka', $simple_arc)
             ->accessCheck(FALSE)
             ->execute();
+          
+          if (!empty($existing)) {
+            $id_shifted = TRUE;
+          }
         }
       }
 
-      // Now this block is truly bulletproof
+      // Evaluate Node Lifecycle & Log Structural Schema Mismatch/Changes
       if (!empty($existing)) {
         $node = $storage->load(reset($existing));
+        
+        if ($id_shifted) {
+          $id_shift_count++;
+          $old_id = $node->get('field_global_id')->value ?? 'N/A';
+          $tribe_name = $p['tribefullname'] ?? 'Unknown Tribe';
+          $shifted_tribes[] = "{$tribe_name} (GlobalID changed from '{$old_id}' to '{$global_id}')";
+          
+          // Log systemic warnings to Drupal's Recent Log Messages admin watchdogs
+          \Drupal::logger('tribe_sync')->warning('ArcGIS ID Shift detected for %tribe. GlobalID mutated from %old to %new.', [
+            '%tribe' => $tribe_name,
+            '%old' => $old_id,
+            '%new' => $global_id,
+          ]);
+        } else {
+          $updated_count++;
+        }
       } else {
         $node = Node::create(['type' => 'tribe']);
-        $node->set('field_global_id', $global_id);
+        $created_count++;
       }
+
+      // Always reset the dynamic/mutating keys to guarantee changes register past standard cache
+      $node->set('field_global_id', $global_id);
+      $node->set('field_object_id', $p['objectid'] ?? NULL);
 
       $norm_bia = $this->normalizeBiaCode($p['currentbiatribalcode'] ?? $p['biacode'] ?? '');
       $simple_arc = $simplify($p['tribefullname'] ?? '');
@@ -193,9 +229,10 @@ class TribeSyncManager {
         'postal_code' => !empty($p['mailingzipcode']) ? $p['mailingzipcode'] : ($p['zipcode'] ?? ''),
       ]);
 
+      // EPA / BIA IDs
       $node->set('field_epa_id', $epa_info['epa_id']);
       $node->set('field_aka', mb_strimwidth($epa_info['aka'], 0, 255, '...'));
-      $node->set('field_tribal_land_code', $epa_info['tribal_land_code']);
+      $node->set('field_tribal_land_code', $norm_bia); // <--- Clean 3-digit code saved here
       $node->set('field_object_id', $p['objectid'] ?? NULL);
 
       if (!empty($p['biaregion'])) {
@@ -235,6 +272,10 @@ class TribeSyncManager {
       'mode' => 'sync',
       'processed' => $processed,
       'total' => count($features),
+      'created' => $created_count,
+      'updated' => $updated_count,
+      'id_shifts' => $id_shift_count,
+      'shifted_details' => $shifted_tribes,
     ];
   }
 
