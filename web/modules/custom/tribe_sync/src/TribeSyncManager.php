@@ -129,15 +129,30 @@ class TribeSyncManager {
 
       $id_shifted = FALSE;
 
-      // 2. TRIPLE FAIL-SAFE: If ArcGIS changed the Global ID, check stable identifiers
       if (empty($existing)) {
+        // Pre-calculate the EPA info for this feature to use as a fallback key
         $norm_bia = $this->normalizeBiaCode($p['currentbiatribalcode'] ?? $p['biacode'] ?? '');
-        
-        if (!empty($norm_bia)) {
-          // Look up by the immutable BIA Integer Code
+        $simple_arc = $simplify($p['tribefullname'] ?? '');
+        $epa_info = $epa_lookup_code[$norm_bia] ?? $epa_lookup_name[$simple_arc] ?? ['epa_id' => NULL];
+
+        // 2. EPA FALLBACK: If ArcGIS Global ID changed, check our stable EPA Internal ID
+        if (!empty($epa_info['epa_id'])) {
           $existing = $storage->getQuery()
             ->condition('type', 'tribe')
-            ->condition('field_tribal_land_code', $norm_bia) // Updated to correct machine name
+            ->condition('field_epa_id', $epa_info['epa_id']) // Match against the stable EPA ID
+            ->accessCheck(FALSE)
+            ->execute();
+          
+          if (!empty($existing)) {
+            $id_shifted = TRUE;
+          }
+        }
+
+        // 3. BIA FALLBACK: If EPA ID check didn't catch it, check the 3-digit BIA Code
+        if (empty($existing) && !empty($norm_bia)) {
+          $existing = $storage->getQuery()
+            ->condition('type', 'tribe')
+            ->condition('field_tribal_land_code', $norm_bia)
             ->accessCheck(FALSE)
             ->execute();
           
@@ -146,11 +161,11 @@ class TribeSyncManager {
           }
         }
         
-        // 3. Last resort fallback: Check against the core node TITLE
+        // 4. TITLE FALLBACK: Ultimate safety net matching against the core node TITLE
         if (empty($existing) && !empty($p['tribefullname'])) {
           $existing = $storage->getQuery()
             ->condition('type', 'tribe')
-            ->condition('title', $p['tribefullname']) // Exact match against the node's real title
+            ->condition('title', $p['tribefullname'])
             ->accessCheck(FALSE)
             ->execute();
           
