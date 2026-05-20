@@ -137,7 +137,7 @@ class TribeSyncManager {
           // Look up by the immutable BIA Integer Code
           $existing = $storage->getQuery()
             ->condition('type', 'tribe')
-            ->condition('field_bia_tribal_code', $norm_bia)
+            ->condition('field_tribal_land_code', $norm_bia) // Updated to correct machine name
             ->accessCheck(FALSE)
             ->execute();
           
@@ -146,12 +146,11 @@ class TribeSyncManager {
           }
         }
         
-        // 3. Last resort fallback: Check by the fuzzy-simplified name string
-        if (empty($existing)) {
-          $simple_arc = $simplify($p['tribefullname'] ?? '');
+        // 3. Last resort fallback: Check against the core node TITLE
+        if (empty($existing) && !empty($p['tribefullname'])) {
           $existing = $storage->getQuery()
             ->condition('type', 'tribe')
-            ->condition('field_aka', $simple_arc)
+            ->condition('title', $p['tribefullname']) // Exact match against the node's real title
             ->accessCheck(FALSE)
             ->execute();
           
