@@ -1,0 +1,42 @@
+uuid: c8506af2-1ff2-4cfc-a074-9b0822c9963d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.region.body
+    - field.field.node.region.field_agencies_served
+    - field.field.node.region.field_deputy_director
+    - field.field.node.region.field_director
+    - field.field.node.region.field_region_boundary
+    - field.field.node.region.field_services
+    - field.field.node.region.field_tribes_served
+    - node.type.region
+  module:
+    - text
+    - user
+id: node.region.teaser
+targetEntityType: node
+bundle: region
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_agencies_served: true
+  field_deputy_director: true
+  field_director: true
+  field_region_boundary: true
+  field_services: true
+  field_tribes_served: true

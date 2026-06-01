@@ -1,0 +1,22 @@
+uuid: 3ffa0427-a230-476c-b8e6-285f15ccf6fd
+langcode: en
+status: true
+dependencies:
+  theme:
+    - fedgov
+_core:
+  default_config_hash: ydSxdq7R66I8UMC460rOzlfzvlUL4VRbdwc6z9DWaUI
+id: fedgov_secondary_local_tasks
+theme: fedgov
+region: highlighted
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

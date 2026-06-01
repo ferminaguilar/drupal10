@@ -1,0 +1,9 @@
+uuid: 194cba3e-6ff6-42fc-b560-947853a15dcf
+langcode: en
+status: true
+dependencies: {  }
+name: 'Federally Recognized Tribes'
+vid: federally_recognized_tribes
+description: 'EPA Json for FRT'
+weight: 0
+new_revision: false

@@ -1,0 +1,31 @@
+uuid: 5e7834e1-ee10-4d28-81da-64a6785d5eff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.agency_sections.field_information
+    - field.field.paragraph.agency_sections.field_title
+    - paragraphs.paragraphs_type.agency_sections
+  module:
+    - text
+id: paragraph.agency_sections.default
+targetEntityType: paragraph
+bundle: agency_sections
+mode: default
+content:
+  field_information:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

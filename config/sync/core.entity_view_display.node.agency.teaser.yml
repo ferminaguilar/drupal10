@@ -1,0 +1,34 @@
+uuid: 78a08bfe-7804-4555-aee4-fe8a6e223344
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.agency.field_contact
+    - field.field.node.agency.field_location
+    - field.field.node.agency.field_parent_region
+    - field.field.node.agency.field_section
+    - field.field.node.agency.field_services
+    - field.field.node.agency.field_superintendent
+    - field.field.node.agency.field_tribes_served
+    - node.type.agency
+  module:
+    - user
+id: node.agency.teaser
+targetEntityType: node
+bundle: agency
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_contact: true
+  field_location: true
+  field_parent_region: true
+  field_section: true
+  field_services: true
+  field_superintendent: true
+  field_tribes_served: true

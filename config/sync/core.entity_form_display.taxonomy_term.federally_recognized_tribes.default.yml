@@ -1,0 +1,54 @@
+uuid: c28b8829-e845-45de-88ac-b7ea9d5cbdbe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.federally_recognized_tribes.feeds_item
+    - field.field.taxonomy_term.federally_recognized_tribes.field_epa_id
+    - taxonomy.vocabulary.federally_recognized_tribes
+  module:
+    - path
+    - text
+id: taxonomy_term.federally_recognized_tribes.default
+targetEntityType: taxonomy_term
+bundle: federally_recognized_tribes
+mode: default
+content:
+  description:
+    type: text_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_epa_id:
+    type: number
+    weight: 101
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  feeds_item: true

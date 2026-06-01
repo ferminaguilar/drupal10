@@ -1,0 +1,29 @@
+uuid: 26f9b6da-80fc-48c6-8dd4-46ca82302e53
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_deputy_director
+    - node.type.leader
+    - node.type.region
+id: node.region.field_deputy_director
+field_name: field_deputy_director
+entity_type: node
+bundle: region
+label: 'Deputy Director'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      leader: leader
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

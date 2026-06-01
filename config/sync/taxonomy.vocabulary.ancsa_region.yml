@@ -1,0 +1,9 @@
+uuid: c6190c9d-f503-407e-a8d6-a5c1c5a34e27
+langcode: en
+status: true
+dependencies: {  }
+name: 'ANCSA Region'
+vid: ancsa_region
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,29 @@
+uuid: 91e79ec6-062d-4bf0-a75e-547eae14804b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bureau_of_land_management
+    - node.type.tribe
+    - taxonomy.vocabulary.blm_state_offices
+id: node.tribe.field_bureau_of_land_management
+field_name: field_bureau_of_land_management
+entity_type: node
+bundle: tribe
+label: 'BLM State Offices'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      blm_state_offices: blm_state_offices
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

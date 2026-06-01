@@ -1,0 +1,51 @@
+uuid: eca07caf-7765-4392-a587-7687ee7623c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.contact.field_address
+    - field.field.paragraph.contact.field_email
+    - field.field.paragraph.contact.field_phone
+    - field.field.paragraph.contact.field_title
+    - paragraphs.paragraphs_type.contact
+  module:
+    - address
+id: paragraph.contact.default
+targetEntityType: paragraph
+bundle: contact
+mode: default
+content:
+  field_address:
+    type: address_default
+    weight: 1
+    region: content
+    settings:
+      wrapper_type: fieldset
+    third_party_settings: {  }
+  field_email:
+    type: email_default
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  field_phone:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,9 @@
+uuid: b97e1c72-adae-44f0-8de6-e9c42097e92c
+langcode: en
+status: true
+dependencies: {  }
+name: 'Tribes Taxonomy'
+vid: tribes_taxonomy
+description: null
+weight: 0
+new_revision: false

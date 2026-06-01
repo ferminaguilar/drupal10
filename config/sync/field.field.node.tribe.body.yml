@@ -1,0 +1,26 @@
+uuid: d78cfa74-5d74-45aa-8bfb-b7626f7999d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - filter.format.plain_text
+    - node.type.tribe
+  module:
+    - text
+id: node.tribe.body
+field_name: body
+entity_type: node
+bundle: tribe
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats:
+    - plain_text
+field_type: text_with_summary

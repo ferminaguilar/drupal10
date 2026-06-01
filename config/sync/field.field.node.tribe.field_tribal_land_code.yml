@@ -1,0 +1,23 @@
+uuid: 11017a9a-8fc5-4637-80b5-cb3965db5240
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tribal_land_code
+    - node.type.tribe
+id: node.tribe.field_tribal_land_code
+field_name: field_tribal_land_code
+entity_type: node
+bundle: tribe
+label: 'Tribal Land Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

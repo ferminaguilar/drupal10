@@ -1,0 +1,29 @@
+uuid: 5c9f6e95-53e1-4aed-b36c-bda1689f4c13
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_profile_picture
+    - media.type.leader_profile_picture
+    - node.type.leader
+id: node.leader.field_profile_picture
+field_name: field_profile_picture
+entity_type: node
+bundle: leader
+label: 'Profile Picture'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      leader_profile_picture: leader_profile_picture
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

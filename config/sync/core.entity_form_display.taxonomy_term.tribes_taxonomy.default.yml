@@ -1,0 +1,55 @@
+uuid: d8efa390-b330-4d02-8d3e-377082acc2c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.tribes_taxonomy.field_tribes_api
+    - taxonomy.vocabulary.tribes_taxonomy
+  module:
+    - path
+    - text
+id: taxonomy_term.tribes_taxonomy.default
+targetEntityType: taxonomy_term
+bundle: tribes_taxonomy
+mode: default
+content:
+  description:
+    type: text_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_tribes_api:
+    type: entity_reference_autocomplete
+    weight: 101
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden: {  }

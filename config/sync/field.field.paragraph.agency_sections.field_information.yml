@@ -1,0 +1,28 @@
+uuid: 1ffc19df-cbaf-465c-9135-1c60b2413261
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_information
+    - filter.format.basic_html
+    - filter.format.plain_text
+    - paragraphs.paragraphs_type.agency_sections
+  module:
+    - text
+id: paragraph.agency_sections.field_information
+field_name: field_information
+entity_type: paragraph
+bundle: agency_sections
+label: 'Section Body'
+description: 'Add the body content for this agency section.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+  allowed_formats:
+    - basic_html
+    - plain_text
+field_type: text_with_summary

@@ -1,0 +1,29 @@
+uuid: 01e85b3f-6c5f-4506-8188-07a01508c4ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ancsa_region
+    - node.type.tribe
+    - taxonomy.vocabulary.ancsa_region
+id: node.tribe.field_ancsa_region
+field_name: field_ancsa_region
+entity_type: node
+bundle: tribe
+label: 'ANCSA Region'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      ancsa_region: ancsa_region
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

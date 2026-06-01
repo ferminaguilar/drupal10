@@ -1,0 +1,87 @@
+uuid: fb819626-313c-496e-9b0e-40245fc8bbd3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.federally_recognized_tribes.field_epa_id
+    - taxonomy.vocabulary.federally_recognized_tribes
+  module:
+    - feeds_ex
+    - feeds_tamper
+    - taxonomy
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      ed9734ff-9173-4d5c-a995-69634b746680:
+        num_char: 255
+        ellipses: true
+        wordsafe: true
+        uuid: ed9734ff-9173-4d5c-a995-69634b746680
+        plugin: truncate_text
+        source: currentname
+        weight: 0
+        label: Truncate
+label: 'EPA FRT'
+id: epa_frt
+description: ''
+help: ''
+import_period: 2419200
+import_period_per_feed: false
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  always_download: true
+  fallback_hub: ''
+  request_timeout: 30
+parser: jsonpath
+parser_configuration:
+  context:
+    value: '$.*'
+  source_encoding:
+    - auto
+  display_errors: false
+  line_limit: 100
+processor: 'entity:taxonomy_term'
+processor_configuration:
+  values:
+    vid: federally_recognized_tribes
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _delete
+  skip_hash_check: true
+  skip_validation: false
+  skip_validation_types: {  }
+  authorize: false
+  revision: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  epatribalinternalid:
+    value: epaTribalInternalId
+    label: epaTribalInternalId
+    machine_name: epatribalinternalid
+    type: json
+  currentname:
+    value: currentName
+    label: currentName
+    machine_name: currentname
+    type: json
+mappings:
+  -
+    target: field_epa_id
+    map:
+      value: epatribalinternalid
+    settings:
+      language: null
+    unique:
+      value: 1
+  -
+    target: name
+    map:
+      value: currentname
+    settings:
+      language: null
+    unique: {  }

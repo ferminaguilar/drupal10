@@ -1,0 +1,48 @@
+uuid: e7f5e6d0-89ed-4d8c-a3fd-6906c8114dcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.contact.field_address
+    - field.field.paragraph.contact.field_email
+    - field.field.paragraph.contact.field_phone
+    - field.field.paragraph.contact.field_title
+    - paragraphs.paragraphs_type.contact
+  module:
+    - address
+id: paragraph.contact.default
+targetEntityType: paragraph
+bundle: contact
+mode: default
+content:
+  field_address:
+    type: address_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_email:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_phone:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

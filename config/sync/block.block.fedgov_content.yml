@@ -1,0 +1,22 @@
+uuid: 47d53c2c-9e66-401a-8bab-342c38466614
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - fedgov
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: fedgov_content
+theme: fedgov
+region: content
+weight: -7
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

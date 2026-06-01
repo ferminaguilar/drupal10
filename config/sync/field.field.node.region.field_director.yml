@@ -1,0 +1,29 @@
+uuid: 6b51b201-e454-4ead-b9fc-feeb78eff465
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_director
+    - node.type.leader
+    - node.type.region
+id: node.region.field_director
+field_name: field_director
+entity_type: node
+bundle: region
+label: 'Regional Director'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      leader: leader
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

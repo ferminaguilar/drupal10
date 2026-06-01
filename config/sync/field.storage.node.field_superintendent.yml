@@ -1,0 +1,19 @@
+uuid: 9c610557-20f1-4278-9c26-a9143df72fac
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_superintendent
+field_name: field_superintendent
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

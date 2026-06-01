@@ -1,0 +1,23 @@
+uuid: ff9e9a28-3103-435d-9256-8ac3ceb48ecd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_epa_id
+    - node.type.tribe
+id: node.tribe.field_epa_id
+field_name: field_epa_id
+entity_type: node
+bundle: tribe
+label: 'EPA ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

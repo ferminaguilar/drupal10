@@ -1,0 +1,23 @@
+uuid: cbefde49-a6d4-4242-b638-59ef9686d955
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_and_media_links
+    - node.type.page
+  module:
+    - link
+id: node.page.field_content_and_media_links
+field_name: field_content_and_media_links
+entity_type: node
+bundle: page
+label: 'Content and Media Links'
+description: 'Leave Link text blank if you want to use the default media document description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

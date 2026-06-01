@@ -1,0 +1,29 @@
+uuid: bd3c5164-f87f-40f0-a4b5-47a1df467e31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nps_unified_regions
+    - node.type.tribe
+    - taxonomy.vocabulary.nps_unified_regions
+id: node.tribe.field_nps_unified_regions
+field_name: field_nps_unified_regions
+entity_type: node
+bundle: tribe
+label: 'NPS Unified Regions'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      nps_unified_regions: nps_unified_regions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

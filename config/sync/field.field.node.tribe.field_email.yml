@@ -1,0 +1,19 @@
+uuid: 3c39ebab-8aad-4a0d-9eb0-1dc6f784a0c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email
+    - node.type.tribe
+id: node.tribe.field_email
+field_name: field_email
+entity_type: node
+bundle: tribe
+label: Email
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

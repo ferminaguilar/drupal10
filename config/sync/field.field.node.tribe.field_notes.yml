@@ -1,0 +1,24 @@
+uuid: 4c98c0f3-98cb-4e92-adab-7230bea80112
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_notes
+    - filter.format.plain_text
+    - node.type.tribe
+  module:
+    - text
+id: node.tribe.field_notes
+field_name: field_notes
+entity_type: node
+bundle: tribe
+label: Notes
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - plain_text
+field_type: text

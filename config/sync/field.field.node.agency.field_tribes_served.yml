@@ -1,0 +1,29 @@
+uuid: ac0a755b-c113-4e06-b8f5-dce3cb18bcd3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tribes_served
+    - node.type.agency
+    - node.type.tribe
+id: node.agency.field_tribes_served
+field_name: field_tribes_served
+entity_type: node
+bundle: agency
+label: 'Tribes Served'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      tribe: tribe
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

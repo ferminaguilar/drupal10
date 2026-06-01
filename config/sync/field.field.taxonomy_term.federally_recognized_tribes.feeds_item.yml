@@ -1,0 +1,23 @@
+uuid: 462e0589-855f-4b52-8833-d8e096c0a102
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.feeds_item
+    - taxonomy.vocabulary.federally_recognized_tribes
+  module:
+    - feeds
+id: taxonomy_term.federally_recognized_tribes.feeds_item
+field_name: feeds_item
+entity_type: taxonomy_term
+bundle: federally_recognized_tribes
+label: 'Feeds item'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:feeds_feed'
+  handler_settings: {  }
+field_type: feeds_item

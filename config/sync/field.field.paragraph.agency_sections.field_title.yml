@@ -1,0 +1,19 @@
+uuid: 546214d8-a5d2-4186-89c3-68324a60e34d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.agency_sections
+id: paragraph.agency_sections.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: agency_sections
+label: 'Section Title'
+description: 'Examples: Agency Overview and Mission, Contact Information, or Trust Services.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

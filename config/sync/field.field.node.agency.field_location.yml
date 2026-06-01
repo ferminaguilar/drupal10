@@ -1,0 +1,21 @@
+uuid: 2c36c149-80c2-4cfa-a992-c83f0752f37f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_location
+    - node.type.agency
+  module:
+    - geofield
+id: node.agency.field_location
+field_name: field_location
+entity_type: node
+bundle: agency
+label: 'Agency Map'
+description: 'Enter the agency location for the Leaflet map display.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geofield

@@ -1,0 +1,23 @@
+uuid: 52fe147c-6545-411f-aa09-3a93b9af24af
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_website
+    - node.type.tribe
+  module:
+    - link
+id: node.tribe.field_website
+field_name: field_website
+entity_type: node
+bundle: tribe
+label: Website
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

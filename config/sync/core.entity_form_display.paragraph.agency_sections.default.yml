@@ -1,0 +1,36 @@
+uuid: fba8f39e-397e-42f3-aef5-65c6f3f8fb54
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.agency_sections.field_information
+    - field.field.paragraph.agency_sections.field_title
+    - paragraphs.paragraphs_type.agency_sections
+  module:
+    - text
+id: paragraph.agency_sections.default
+targetEntityType: paragraph
+bundle: agency_sections
+mode: default
+content:
+  field_information:
+    type: text_textarea_with_summary
+    weight: 1
+    region: content
+    settings:
+      rows: 3
+      summary_rows: 2
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

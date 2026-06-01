@@ -1,0 +1,9 @@
+uuid: 3e435352-60c6-45ef-95dd-72caad2eca36
+langcode: en
+status: true
+dependencies: {  }
+name: 'Alaska Subsistence Region'
+vid: alaska_subsistence_region
+description: null
+weight: 0
+new_revision: false

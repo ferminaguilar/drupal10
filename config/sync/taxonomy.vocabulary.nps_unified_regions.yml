@@ -1,0 +1,9 @@
+uuid: 91a0b300-4ec9-4b1f-9e55-2d94a19e2a9f
+langcode: en
+status: true
+dependencies: {  }
+name: 'NPS Unified Regions'
+vid: nps_unified_regions
+description: null
+weight: 0
+new_revision: false

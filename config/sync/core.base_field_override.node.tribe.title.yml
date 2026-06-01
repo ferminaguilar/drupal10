@@ -1,0 +1,18 @@
+uuid: 39b0fe89-540a-4beb-ab81-9b7e0991a1d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.tribe
+id: node.tribe.title
+field_name: title
+entity_type: node
+bundle: tribe
+label: 'Tribe Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

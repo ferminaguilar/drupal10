@@ -1,0 +1,23 @@
+uuid: dd81ade1-1f30-4462-9669-dec4eda1eddf
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - fedgov
+_core:
+  default_config_hash: imMyHD6LYci0gtXq56qr9ZKGHzbEG9uFydrN5EhKtSU
+id: fedgov_search_form_wide
+theme: fedgov
+region: secondary_menu
+weight: -6
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

@@ -1,0 +1,23 @@
+uuid: 0cdeb456-45a8-470d-85b9-c91533b2c8bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_epa_id
+    - taxonomy.vocabulary.federally_recognized_tribes
+id: taxonomy_term.federally_recognized_tribes.field_epa_id
+field_name: field_epa_id
+entity_type: taxonomy_term
+bundle: federally_recognized_tribes
+label: 'EPA ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,29 @@
+uuid: 856afcd0-7e97-4110-a858-9a6bb986969c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lar_type
+    - node.type.tribe
+    - taxonomy.vocabulary.lar_type
+id: node.tribe.field_lar_type
+field_name: field_lar_type
+entity_type: node
+bundle: tribe
+label: 'LAR Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      lar_type: lar_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

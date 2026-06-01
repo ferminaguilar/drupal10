@@ -1,0 +1,9 @@
+uuid: 4579bc91-49e6-48e2-a164-1c6c827d1a5e
+langcode: en
+status: true
+dependencies: {  }
+name: 'LAR Type'
+vid: lar_type
+description: null
+weight: 0
+new_revision: false

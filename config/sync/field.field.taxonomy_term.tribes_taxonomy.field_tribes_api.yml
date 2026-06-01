@@ -1,0 +1,29 @@
+uuid: f5ebe672-bc13-4217-84a0-ce470d0d56bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_tribes_api
+    - node.type.tribe
+    - taxonomy.vocabulary.tribes_taxonomy
+id: taxonomy_term.tribes_taxonomy.field_tribes_api
+field_name: field_tribes_api
+entity_type: taxonomy_term
+bundle: tribes_taxonomy
+label: 'Tribes Api'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      tribe: tribe
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

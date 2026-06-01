@@ -1,0 +1,20 @@
+uuid: 487d795b-757a-4d9d-b54c-2d4bd10f6efe
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_ancsa_region
+field_name: field_ancsa_region
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

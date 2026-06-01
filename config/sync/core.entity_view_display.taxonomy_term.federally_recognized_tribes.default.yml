@@ -1,0 +1,33 @@
+uuid: abee7867-abee-4248-bcd6-953fb560e2b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.federally_recognized_tribes.feeds_item
+    - field.field.taxonomy_term.federally_recognized_tribes.field_epa_id
+    - taxonomy.vocabulary.federally_recognized_tribes
+  module:
+    - text
+id: taxonomy_term.federally_recognized_tribes.default
+targetEntityType: taxonomy_term
+bundle: federally_recognized_tribes
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_epa_id:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  feeds_item: true

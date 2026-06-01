@@ -1,0 +1,13 @@
+uuid: 760a8126-8aeb-478f-a20b-9176a0d8ffb8
+langcode: en
+status: true
+dependencies: {  }
+id: leader_profile_picture
+label: 'Leader Profile Picture'
+description: ''
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image_1
+field_map: {  }

@@ -1,0 +1,19 @@
+uuid: 47341282-1c13-4420-aad4-c30cbc7f3e51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_name
+    - node.type.tribe
+id: node.tribe.field_last_name
+field_name: field_last_name
+entity_type: node
+bundle: tribe
+label: 'Last Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

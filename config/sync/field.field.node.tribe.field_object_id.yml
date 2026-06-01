@@ -1,0 +1,23 @@
+uuid: 96bc9743-c863-47ba-a166-36c5fef653a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_object_id
+    - node.type.tribe
+id: node.tribe.field_object_id
+field_name: field_object_id
+entity_type: node
+bundle: tribe
+label: 'Object ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

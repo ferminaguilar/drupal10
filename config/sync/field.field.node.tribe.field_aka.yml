@@ -1,0 +1,19 @@
+uuid: c1d70536-ae03-48b3-9880-ade4a6e3c0d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_aka
+    - node.type.tribe
+id: node.tribe.field_aka
+field_name: field_aka
+entity_type: node
+bundle: tribe
+label: 'AKA / Alternate Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
