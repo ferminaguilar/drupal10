@@ -47,6 +47,8 @@ third_party_settings:
       children:
         - group_contact
         - group_leadership
+        - group_region_name
+        - group_map
       label: 'Tribe Information'
       region: content
       parent_name: ''
@@ -87,10 +89,51 @@ third_party_settings:
         - field_first_name
         - field_last_name
         - field_job_title
+        - field_election_date
+        - field_next_election
       label: Leadership
       region: content
       parent_name: group_tribe_information
       weight: 13
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_region_name:
+      children:
+        - field_aka
+        - field_alaska_subsistence_region
+        - field_ancsa_region
+        - field_bia_region
+        - field_fws_regions
+        - field_lar_type
+        - field_bureau_of_land_management
+        - field_nps_unified_regions
+      label: 'Region Information'
+      region: content
+      parent_name: group_tribe_information
+      weight: 14
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_map:
+      children:
+        - field_location
+      label: Map
+      region: content
+      parent_name: group_tribe_information
+      weight: 15
       format_type: tab
       format_settings:
         classes: ''
@@ -123,7 +166,7 @@ content:
     third_party_settings: {  }
   field_aka:
     type: string_textfield
-    weight: 10
+    weight: 9
     region: content
     settings:
       size: 60
@@ -131,7 +174,7 @@ content:
     third_party_settings: {  }
   field_alaska_subsistence_region:
     type: entity_reference_autocomplete
-    weight: 12
+    weight: 10
     region: content
     settings:
       match_operator: CONTAINS
@@ -141,7 +184,7 @@ content:
     third_party_settings: {  }
   field_ancsa_region:
     type: entity_reference_autocomplete
-    weight: 13
+    weight: 11
     region: content
     settings:
       match_operator: CONTAINS
@@ -151,7 +194,7 @@ content:
     third_party_settings: {  }
   field_bia_agency:
     type: entity_reference_autocomplete
-    weight: 36
+    weight: 18
     region: content
     settings:
       match_operator: CONTAINS
@@ -161,7 +204,7 @@ content:
     third_party_settings: {  }
   field_bia_region:
     type: entity_reference_autocomplete
-    weight: 15
+    weight: 12
     region: content
     settings:
       match_operator: CONTAINS
@@ -171,7 +214,7 @@ content:
     third_party_settings: {  }
   field_bureau_of_land_management:
     type: entity_reference_autocomplete
-    weight: 17
+    weight: 15
     region: content
     settings:
       match_operator: CONTAINS
@@ -181,7 +224,7 @@ content:
     third_party_settings: {  }
   field_election_date:
     type: datetime_default
-    weight: 16
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -195,7 +238,7 @@ content:
     third_party_settings: {  }
   field_epa_id:
     type: number
-    weight: 28
+    weight: 15
     region: content
     settings:
       placeholder: ''
@@ -218,7 +261,7 @@ content:
     third_party_settings: {  }
   field_fws_regions:
     type: entity_reference_autocomplete
-    weight: 18
+    weight: 13
     region: content
     settings:
       match_operator: CONTAINS
@@ -228,7 +271,7 @@ content:
     third_party_settings: {  }
   field_global_id:
     type: string_textfield
-    weight: 30
+    weight: 16
     region: content
     settings:
       size: 60
@@ -244,7 +287,7 @@ content:
     third_party_settings: {  }
   field_lar_type:
     type: entity_reference_autocomplete
-    weight: 19
+    weight: 14
     region: content
     settings:
       match_operator: CONTAINS
@@ -262,7 +305,7 @@ content:
     third_party_settings: {  }
   field_location:
     type: geofield_latlon
-    weight: 20
+    weight: 9
     region: content
     settings:
       html5_geolocation: false
@@ -276,13 +319,13 @@ content:
     third_party_settings: {  }
   field_next_election:
     type: datetime_default
-    weight: 21
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
   field_notes:
     type: text_textfield
-    weight: 22
+    weight: 10
     region: content
     settings:
       size: 60
@@ -290,7 +333,7 @@ content:
     third_party_settings: {  }
   field_nps_unified_regions:
     type: entity_reference_autocomplete
-    weight: 23
+    weight: 16
     region: content
     settings:
       match_operator: CONTAINS
@@ -300,14 +343,14 @@ content:
     third_party_settings: {  }
   field_object_id:
     type: number
-    weight: 24
+    weight: 11
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_organization:
     type: string_textfield
-    weight: 26
+    weight: 13
     region: content
     settings:
       size: 60
@@ -330,7 +373,7 @@ content:
     third_party_settings: {  }
   field_suffix:
     type: string_textfield
-    weight: 27
+    weight: 14
     region: content
     settings:
       size: 60
@@ -338,14 +381,14 @@ content:
     third_party_settings: {  }
   field_tribal_land_code:
     type: number
-    weight: 31
+    weight: 17
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_website:
     type: link_default
-    weight: 25
+    weight: 12
     region: content
     settings:
       placeholder_url: ''
@@ -353,27 +396,27 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 8
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 6
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 9
+    weight: 8
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 7
+    weight: 6
     region: content
     settings:
       display_label: true
