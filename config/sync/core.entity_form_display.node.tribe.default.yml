@@ -48,6 +48,7 @@ third_party_settings:
         - group_contact
         - group_leadership
         - group_region_name
+        - group_identifiers
         - group_map
         - group_notes
       label: 'Tribe Information'
@@ -72,6 +73,8 @@ third_party_settings:
         - field_fax
         - field_physical_address
         - field_mailing_address
+        - field_website
+        - field_organization
       label: Contact
       region: content
       parent_name: group_tribe_information
@@ -87,6 +90,7 @@ third_party_settings:
         required_fields: true
     group_leadership:
       children:
+        - field_suffix
         - field_first_name
         - field_last_name
         - field_job_title
@@ -114,6 +118,7 @@ third_party_settings:
         - field_fws_regions
         - field_lar_type
         - field_bureau_of_land_management
+        - field_bia_agency
         - field_nps_unified_regions
       label: 'Region Information'
       region: content
@@ -134,7 +139,7 @@ third_party_settings:
       label: Map
       region: content
       parent_name: group_tribe_information
-      weight: 15
+      weight: 16
       format_type: tab
       format_settings:
         classes: ''
@@ -150,7 +155,26 @@ third_party_settings:
       label: Notes
       region: content
       parent_name: group_tribe_information
-      weight: 16
+      weight: 17
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_identifiers:
+      children:
+        - field_object_id
+        - field_epa_id
+        - field_global_id
+        - field_tribal_land_code
+      label: Identifiers
+      region: content
+      parent_name: group_tribe_information
+      weight: 15
       format_type: tab
       format_settings:
         classes: ''
@@ -211,7 +235,7 @@ content:
     third_party_settings: {  }
   field_bia_agency:
     type: entity_reference_autocomplete
-    weight: 18
+    weight: 16
     region: content
     settings:
       match_operator: CONTAINS
@@ -241,7 +265,7 @@ content:
     third_party_settings: {  }
   field_election_date:
     type: datetime_default
-    weight: 22
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -255,7 +279,7 @@ content:
     third_party_settings: {  }
   field_epa_id:
     type: number
-    weight: 15
+    weight: 10
     region: content
     settings:
       placeholder: ''
@@ -270,7 +294,7 @@ content:
     third_party_settings: {  }
   field_first_name:
     type: string_textfield
-    weight: 19
+    weight: 13
     region: content
     settings:
       size: 60
@@ -288,7 +312,7 @@ content:
     third_party_settings: {  }
   field_global_id:
     type: string_textfield
-    weight: 16
+    weight: 11
     region: content
     settings:
       size: 60
@@ -296,7 +320,7 @@ content:
     third_party_settings: {  }
   field_job_title:
     type: string_textfield
-    weight: 21
+    weight: 15
     region: content
     settings:
       size: 60
@@ -314,7 +338,7 @@ content:
     third_party_settings: {  }
   field_last_name:
     type: string_textfield
-    weight: 20
+    weight: 14
     region: content
     settings:
       size: 60
@@ -336,7 +360,7 @@ content:
     third_party_settings: {  }
   field_next_election:
     type: datetime_default
-    weight: 23
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -350,7 +374,7 @@ content:
     third_party_settings: {  }
   field_nps_unified_regions:
     type: entity_reference_autocomplete
-    weight: 16
+    weight: 17
     region: content
     settings:
       match_operator: CONTAINS
@@ -360,14 +384,14 @@ content:
     third_party_settings: {  }
   field_object_id:
     type: number
-    weight: 11
+    weight: 9
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_organization:
     type: string_textfield
-    weight: 13
+    weight: 37
     region: content
     settings:
       size: 60
@@ -390,7 +414,7 @@ content:
     third_party_settings: {  }
   field_suffix:
     type: string_textfield
-    weight: 14
+    weight: 12
     region: content
     settings:
       size: 60
@@ -398,14 +422,14 @@ content:
     third_party_settings: {  }
   field_tribal_land_code:
     type: number
-    weight: 17
+    weight: 12
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_website:
     type: link_default
-    weight: 12
+    weight: 36
     region: content
     settings:
       placeholder_url: ''
@@ -413,7 +437,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 8
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -426,7 +450,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 9
+    weight: 8
     region: content
     settings:
       display_label: true
