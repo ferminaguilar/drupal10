@@ -59,6 +59,11 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "php-http/discovery": true
         },
+        "policy": {
+            "advisories": {
+                "block": false
+            }
+        },
         "sort-packages": true
     },
     "extra": {
