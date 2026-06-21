@@ -1,0 +1,30 @@
+uuid: ce5886dd-227b-4672-8a36-d46fdf6b3ad2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.regions_bia.field_corresponding_region_node
+    - taxonomy.vocabulary.regions_bia
+  module:
+    - text
+id: taxonomy_term.regions_bia.default
+targetEntityType: taxonomy_term
+bundle: regions_bia
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_corresponding_region_node:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.region.field_agencies_served
     - field.field.node.region.field_deputy_director
     - field.field.node.region.field_director
+    - field.field.node.region.field_map_color
     - field.field.node.region.field_region_boundary
     - field.field.node.region.field_services
     - field.field.node.region.field_tribes_served
@@ -66,12 +67,20 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_map_color:
+    type: string_textfield
+    weight: 26
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_region_boundary:
-    type: geofield_latlon
+    type: geofield_default
     weight: 13
     region: content
     settings:
-      html5_geolocation: false
+      geometry_validation: false
     third_party_settings: {  }
   field_services:
     type: entity_reference_autocomplete

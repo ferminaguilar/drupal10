@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.region.field_agencies_served
     - field.field.node.region.field_deputy_director
     - field.field.node.region.field_director
+    - field.field.node.region.field_map_color
     - field.field.node.region.field_region_boundary
     - field.field.node.region.field_services
     - field.field.node.region.field_tribes_served
@@ -37,6 +38,7 @@ hidden:
   field_agencies_served: true
   field_deputy_director: true
   field_director: true
+  field_map_color: true
   field_region_boundary: true
   field_services: true
   field_tribes_served: true

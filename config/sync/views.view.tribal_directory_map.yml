@@ -4,18 +4,21 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_location
+    - field.storage.node.field_map_color
     - field.storage.node.field_physical_address
+    - field.storage.node.field_region_boundary
     - node.type.tribe
   module:
     - address
     - geofield
     - leaflet_views
     - node
+    - taxonomy
     - user
 id: tribal_directory_map
 label: 'Tribal Directory Map'
 module: views
-description: ''
+description: 'Interactive tribal marker registry partitioned by the 12 BIA regions.'
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -64,6 +67,69 @@ display:
           type: string
           settings:
             link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_map_color:
+          id: field_map_color
+          table: node__field_map_color
+          field: field_map_color
+          relationship: field_corresponding_region_node
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -200,6 +266,135 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        title_1:
+          id: title_1
+          table: node_field_data
+          field: title
+          relationship: field_corresponding_region_node
+          group_type: group
+          admin_label: 'BIA Region Title (Hidden Field for Grouping)'
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_region_boundary:
+          id: field_region_boundary
+          table: node__field_region_boundary
+          field: field_region_boundary
+          relationship: field_corresponding_region_node
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: geofield_default
+          settings:
+            output_format: wkt
+            output_escape: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       pager:
         type: none
         options:
@@ -264,10 +459,18 @@ display:
       style:
         type: leaflet_map
         options:
-          grouping: {  }
+          grouping:
+            -
+              field: title_1
+              rendered: true
+              overlays_options:
+                disabled_overlays: {  }
+                hidden_overlays_controls: {  }
           data_source:
             field_location: field_location
+            field_region_boundary: field_region_boundary
           entity_source: __base_table
+          entity_source_submit: 'Update Entity Source'
           name_field: ''
           leaflet_tooltip:
             value: title
@@ -276,18 +479,18 @@ display:
             value: ''
             view_mode: full
             options: '{"maxWidth":"300","minWidth":"50","autoPan":true}'
-          leaflet_map: 'OSM Mapnik'
-          height: '400'
+          leaflet_map: openstreetmap
+          height: '600'
           height_unit: px
           hide_empty_map: false
           disable_wheel: false
-          gesture_handling: false
-          fitbounds_options: '{"padding":[0,0]}'
+          gesture_handling: true
+          fitbounds_options: '{"padding":[20,20]}'
           reset_map:
-            control: false
+            control: true
             options: '{"position":"topleft","title":"Reset View"}'
           map_scale:
-            control: false
+            control: true
             options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
           locate:
             control: false
@@ -296,11 +499,11 @@ display:
           map_position:
             force: false
             center:
-              lat: 0.0
-              lon: 0.0
+              lat: 39.8283
+              lon: -98.5795
             zoomControlPosition: topleft
-            zoom: 5
-            minZoom: 1
+            zoom: 4
+            minZoom: 2
             maxZoom: 18
             zoomFiner: 0
           weight: '0'
@@ -333,9 +536,9 @@ display:
             options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":true,"removeOutsideVisibleBounds":false}'
             include_path: false
           fullscreen:
-            control: false
+            control: true
             options: '{"position":"topleft","pseudoFullscreen":false}'
-          path: '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}'
+          path: '{"stroke":true,"color":"#ffffff","weight":2,"opacity":0.85,"fill":true,"fillColor":"{{ field_map_color }}","fillOpacity":0.4}'
           feature_properties:
             values: ''
           map_lazy_load:
@@ -355,7 +558,27 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        field_bia_region:
+          id: field_bia_region
+          table: node__field_bia_region
+          field: field_bia_region
+          relationship: none
+          group_type: group
+          admin_label: 'Tribe to Taxonomy Term Bridge'
+          entity_type: node
+          plugin_id: standard
+          required: false
+        field_corresponding_region_node:
+          id: field_corresponding_region_node
+          table: taxonomy_term__field_corresponding_region_node
+          field: field_corresponding_region_node
+          relationship: field_bia_region
+          group_type: group
+          admin_label: 'Taxonomy Term to Region Node Bridge'
+          entity_type: taxonomy_term
+          plugin_id: standard
+          required: false
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -368,7 +591,9 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_location'
+        - 'config:field.storage.node.field_map_color'
         - 'config:field.storage.node.field_physical_address'
+        - 'config:field.storage.node.field_region_boundary'
   page_1:
     id: page_1
     display_title: Page
@@ -386,4 +611,6 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_location'
+        - 'config:field.storage.node.field_map_color'
         - 'config:field.storage.node.field_physical_address'
+        - 'config:field.storage.node.field_region_boundary'

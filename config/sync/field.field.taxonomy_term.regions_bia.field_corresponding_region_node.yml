@@ -1,0 +1,29 @@
+uuid: 99458283-60ca-41bc-ab1f-be7b2ef755e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_corresponding_region_node
+    - node.type.region
+    - taxonomy.vocabulary.regions_bia
+id: taxonomy_term.regions_bia.field_corresponding_region_node
+field_name: field_corresponding_region_node
+entity_type: taxonomy_term
+bundle: regions_bia
+label: 'Corresponding Region Node'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      region: region
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
