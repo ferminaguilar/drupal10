@@ -41,6 +41,7 @@
         "drupal/paragraphs": "^1.20",
         "drupal/search_api": "^1.40",
         "drupal/tamper": "^1.0@alpha",
+        "drupal/upgrade_status": "^4.3",
         "drupal/uswds_base": "^3.10",
         "drush/drush": "^13.7",
         "smalot/pdfparser": "^2.12"
@@ -53,18 +54,22 @@
     "config": {
         "allow-plugins": {
             "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
+            "php-http/discovery": true,
             "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "php-http/discovery": true
+            "tbachert/spi": true
         },
         "policy": {
             "advisories": {
                 "block": false
             }
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "audit": {
+            "ignore": ["PKSA-93qv-9n9h-6k6p", "PKSA-k22t-f949-t9g6", "PKSA-7qs6-zvnz-h66r"]
+        }
     },
     "extra": {
         "drupal-scaffold": {
@@ -122,5 +127,8 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "require-dev": {
+        "drupal/core-dev": "10.6.11"
     }
 }
